@@ -1,0 +1,59 @@
+<link
+  rel="stylesheet"
+  href="{{url_for('.static', filename='css/dashboard.css')}}"
+/>
+
+<div class="dashboard">
+  <div class="dashboard-nav">
+    <header>
+      <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a
+      ><a href="{{ url_for('dashboard') }}" class="brand-logo"
+        ><i class="fas fa-anchor"></i> <span>Dashboard</span></a
+      >
+    </header>
+    <nav class="dashboard-nav-list">
+      <a href="{{ url_for('dashboard') }}" class="dashboard-nav-item"
+        ><i class="fas fa-home"></i> Overview </a
+      ><a
+        href="{{url_for('download_file')}}"
+        download
+        class="dashboard-nav-item"
+        ><i class="fas fa-file-upload"></i>
+        Download
+      </a>
+      <a href="dataset" class="dashboard-nav-item"
+        ><i class="fas fa-file-upload"></i>
+        Dataset
+      </a>
+      <a href="detect" class="dashboard-nav-item"
+        ><i class="fas fa-file-upload"></i>
+        Video
+      </a>
+
+      <div class="nav-item-divider"></div>
+      <a href="{{ url_for('logout') }}" class="dashboard-nav-item"
+        ><i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </nav>
+  </div>
+  <div class="dashboard-app">
+    <!-- <header class="dashboard-toolbar">
+      <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+    </header> -->
+    <div class="dashboard-content">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <h2>Video Streaming Demonstration Dataset</h2>
+           
+          </div>
+          <div class="card-body">
+            
+            <img  height="400"  width="500" id="bg" src="{{ url_for('dataset_feed') }}">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

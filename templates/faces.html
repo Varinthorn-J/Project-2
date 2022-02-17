@@ -1,0 +1,76 @@
+ {% block bodyblock %}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/faces.css')}}">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+  
+  
+    <div class="container">
+   <section class="glass">
+    <div class="card">
+          <div class="info">
+            <div class="login"> 
+              <h1 class="title">Face Detection and Face Recognition</h1> 
+
+              <form action="#" method="post" enctype="multipart/form-data">
+                <label for="upload">Upload your image</label>
+                <input type="file" id="upload" name="image" required="true">
+                <input type="submit" value="upload">
+             </form>
+
+            <!-- <button class="bt" type="file" id="upload" name="image" required="true" >1.Choose File</button>
+            <button class="bt" type="file" id="upload" name="image" required="true" >2.Upload</button> -->
+            </div>
+          </div>
+          <br>
+          <div class="content" align="center">
+
+             <h3> predict: {{ name }}  </h3> 
+          <img src="{{ url_for('static',filename='uploads/')}}{{ img_name }}" alt="" width="{{ w }}" height="400">
+          </div>
+         
+      </div>
+  
+   </section>
+      
+    </div>
+    
+  
+  
+  
+  
+  </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+{% if fileupload %}
+
+
+{% endif %} {% endblock %}
+
+

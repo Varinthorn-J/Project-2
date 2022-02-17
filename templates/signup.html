@@ -1,0 +1,106 @@
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {%
+block title %} Sign Up {% endblock %} {% block styles %} {{super()}}
+<link
+  rel="stylesheet"
+  href="{{url_for('.static', filename='css/login.css')}}"
+/>
+{% endblock %} {% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="{{url_for('.static', filename='css/index.css')}}"/>
+  
+  
+
+<head>
+
+  <!--  Meta  -->
+  <meta charset="UTF-8" />
+  <title>Smooth navigation</title>
+
+  <!--  Styles  -->
+  <link rel="stylesheet" href="styles/index.processed.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg main-nav px-0">
+        <div class="logo">
+          <img width="80px" height="auto" src="../static/images/PSU-logo-Original.png" alt="psu" />
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar icon-bar-1"></span>
+                        <span class="icon-bar icon-bar-2"></span>
+                        <span class="icon-bar icon-bar-3"></span>
+                    </button>
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav ml-auto text-uppercase f1">
+            <!-- <li>
+              <a href="" >Smart Class Attendance</a>
+            </li> -->
+            <li>
+              <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li>
+              <a href="{{ url_for('login') }}">Sign in</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+      
+     
+
+    </div>
+    <!-- /.container -->
+  </header>
+  <!--
+
+    Wow! What do you want to build?
+
+    You have so many possibilities right now... Looking for something to kick off?
+    How about a simple folio page to show off everything you're going to make!
+   
+  -->
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- Scripts -->
+  <script src="scripts/index.js"></script>
+
+</body>
+
+</html>
+<div class="wrapper">
+  <div class="logo">
+    <img src="../static/images/PSU-logo-Original.png" alt="psu" />
+  </div>
+  <br />
+  <div class="text-center mt-4 name">Please Sign Up</div>
+ 
+  <form class="form-signin" method="POST" action="/signup">
+    {{ form.hidden_tag() }}
+    <br />
+    <span class="far fa-user">Username</span>
+    <div class="form-field d-flex align-items-center">
+      {{ (form.username) }}
+    </div>
+    <span class="far fa-user">Email</span>
+    <div class="form-field d-flex align-items-center">{{ (form.email) }}</div>
+    <span class="far fa-user">Password</span>
+    <div class="form-field d-flex align-items-center">
+      {{ (form.password) }}
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Sign Up
+    </button>
+  </form>
+</div>
+{% endblock %}
