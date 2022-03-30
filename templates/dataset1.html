@@ -6,11 +6,11 @@
 <div class="dashboard">
   <div class="dashboard-nav">
     <header>
-     <a href="{{ url_for('dashboard') }}" class="brand-logo"
-        ><i class="fas fa-anchor"></i> <span>Dashboard</span></a >
-     
+      <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a
+      ><a href="{{ url_for('dashboard') }}" class="brand-logo"
+        ><i class="fas fa-anchor"></i> <span>Dashboard</span></a
+      >
     </header>
-    
     <nav class="dashboard-nav-list">
       <a href="{{ url_for('dashboard') }}" class="dashboard-nav-item"
         ><i class="fas fa-home"></i> Overview </a
@@ -21,33 +21,14 @@
         ><i class="fas fa-file-upload"></i>
         Download
       </a>
-      <a
-      href="dataset"
-        
-        class="dashboard-nav-item"
+      <a href="dataset" class="dashboard-nav-item"
         ><i class="fas fa-file-upload"></i>
         Dataset
       </a>
-
-      <a
-      href="showlist"
-        
-        class="dashboard-nav-item"
-        ><i class="fas fa-file-upload"></i>
-        Dataset_Test
-      </a>
-
-
-      <a
-      href="detect"
-        
-        class="dashboard-nav-item"
+      <a href="detect" class="dashboard-nav-item"
         ><i class="fas fa-file-upload"></i>
         Video
       </a>
-
-
-    
 
       <div class="nav-item-divider"></div>
       <a href="{{ url_for('logout') }}" class="dashboard-nav-item"
@@ -63,20 +44,13 @@
       <div class="container">
         <div class="card">
           <div class="card-header">
-            <h1>Class Attendance</h1>
-            <h3 class="page-header">Welcome, {{ name }}</h3>
+            <h2>Video Streaming Demonstration Dataset</h2>
+           
           </div>
-        
           <div class="card-body">
-            <iframe
-              class
-              Attendance
-              src="https://docs.google.com/spreadsheets/d/10yz5bhARlVEHAQIhcBR3eLK0Sc6_dswE/edit?usp=sharing&ouid=101099891379846827639&rtpof=true&sd=true"
-              height="800"
-              width="800"
-            ></iframe>
-         
-
+            
+            <img  height="400"  width="500" id="bg" src="{{ url_for('dataset_feed1') }}">
+           
           </div>
         </div>
       </div>

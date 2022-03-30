@@ -1,8 +1,9 @@
 import views
-import face_recognition
+#import face_recognition
 from flask import Flask, Response, send_file
 from flask import render_template, request
 from PIL import Image, ImageDraw
+from flask import Flask, request
 import os
 import numpy as np
 import cv2
@@ -19,9 +20,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 #from face import facenett
 from face import facevideo
 from face import detect
+import pandas as pd
 
 
 app = Flask(__name__)
+
 
 app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:\\2-2563\\project\\2\\projectII\\database.db'
@@ -84,7 +87,7 @@ def dataset():
                         x1, y1, width, height = results[i]['box']
                         x1, y1 = abs(x1), abs(y1)
                         x2, y2 = x1 + width, y1 + height
-                        frame = cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
+                        # frame = cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
                         pixels = np.asarray(frame)
                         face = pixels[y1:y2, x1:x2]
                         image = Image.fromarray(face)
@@ -109,6 +112,109 @@ def dataset_feed():
 
 ##########################################################
 
+@app.route('/dataset1')
+def dataset1():
+    return render_template('dataset1.html')
+def dataset1():
+    cap = cv2.VideoCapture(0)
+    detector = MTCNN()
+    img_id = 0
+    count = 0
+    while(True):
+        
+        ret, frame = cap.read()
+        if not ret:
+            frame = cv2.VideoCapture(0)
+            continue
+        
+        if ret:
+            frame = np.asarray(frame)
+            count = count + 1
+            if count == 5 :
+                print(count)
+                try:
+                    results = detector.detect_faces(frame)
+                    count = 0
+                    for i in range(len(results)):
+                        x1, y1, width, height = results[i]['box']
+                        x1, y1 = abs(x1), abs(y1)
+                        x2, y2 = x1 + width, y1 + height
+                        # frame = cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
+                        pixels = np.asarray(frame)
+                        face = pixels[y1:y2, x1:x2]
+                        image = Image.fromarray(face)
+                        image = image.resize((160,160))
+                        face_array = np.asarray(image)
+                        cv2.imwrite('./datas/train/Alameen/img_{}.jpg'.format(img_id),frame)  
+                        img_id +=1
+                        print("test")
+               
+                
+                except:
+                    print("Something else went wrong")
+        frame = cv2.imencode('.jpg', frame)[1].tobytes()
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        # time.sleep(0.1)
+        
+@app.route('/dataset_feed1')
+def dataset_feed1():
+    global video
+    return Response(dataset1(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+##########################################################
+
+##########################################################
+
+@app.route('/dataset2')
+def dataset2():
+    return render_template('dataset2.html')
+def dataset2():
+    cap = cv2.VideoCapture(0)
+    detector = MTCNN()
+    img_id = 0
+    count = 0
+    while(True):
+        
+        ret, frame = cap.read()
+        if not ret:
+            frame = cv2.VideoCapture(0)
+            continue
+        
+        if ret:
+            frame = np.asarray(frame)
+            count = count + 1
+            if count == 5 :
+                print(count)
+                try:
+                    results = detector.detect_faces(frame)
+                    count = 0
+                    for i in range(len(results)):
+                        x1, y1, width, height = results[i]['box']
+                        x1, y1 = abs(x1), abs(y1)
+                        x2, y2 = x1 + width, y1 + height
+                        # frame = cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
+                        pixels = np.asarray(frame)
+                        face = pixels[y1:y2, x1:x2]
+                        image = Image.fromarray(face)
+                        image = image.resize((160,160))
+                        face_array = np.asarray(image)
+                        cv2.imwrite('./datas/train/Alameen/img_{}.jpg'.format(img_id),frame)  
+                        img_id +=1
+                        print("test_dataset2")
+               
+                
+                except:
+                    print("Something else went wrong")
+        frame = cv2.imencode('.jpg', frame)[1].tobytes()
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        # time.sleep(0.1)
+        
+@app.route('/dataset_feed2')
+def dataset_feed2():
+    global video
+    return Response(dataset2(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+##########################################################
 
 @app.route('/detect')
 def detect():
@@ -214,6 +320,34 @@ def detect_feed():
 #             break
 
 ##################################
+# from mtcnn import MTCNN
+# import cv2
+# detector = MTCNN()
+# #Load a videopip TensorFlow
+# video_capture = cv2.VideoCapture(0)
+ 
+# while (True):
+#     ret, frame = video_capture.read()
+#     frame = cv2.resize(frame, (600, 400))
+#     boxes = detector.detect_faces(frame)
+#     if boxes:
+ 
+#         box = boxes[0]['box']
+#         conf = boxes[0]['confidence']
+#         x, y, w, h = box[0], box[1], box[2], box[3]
+ 
+#         if conf > 0.5:
+#             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 1)
+ 
+#     cv2.imshow("Frame", frame)
+#     if cv2.waitKey(25) & 0xFF == ord('q'):
+#         break
+ 
+# video_capture.release()
+# cv2.destroyAllWindows()
+
+
+#####################################
 
 
 

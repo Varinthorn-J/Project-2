@@ -23,6 +23,9 @@ def faceapp():
 # def showlist():
 #     return render_template("showlist.html")
 
+def dataset_index():
+    return render_template("dataset_index.html")
+
 
 def getwidth(path):
     img = Image.open(path)
